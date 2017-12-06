@@ -20,7 +20,7 @@ namespace Laba_4
         public List<Usb> DeviseListCreate()
         {
             List<Usb> usbDevices = new List<Usb>();
-            //Получение драйвера USB и MTP
+            //Получение  USB и MTP
             List<DriveInfo> diskDrives = DriveInfo.GetDrives().Where(d => d.IsReady && d.DriveType == DriveType.Removable).ToList();
             List<MediaDevice> mtpDrives = MediaDevice.GetDevices().ToList();
             // We can't eject MTP and we dont have size of it, so we should work with it differently

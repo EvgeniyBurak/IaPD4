@@ -11,7 +11,9 @@ using System.Windows.Forms;
 
 namespace Laba_4
 {
-    // Class of form, where we have all important methods for GUI
+    /// <summary>
+    /// Класс формы, где есть все важные методы для GUI
+    /// </summary>
     public partial class Form1 : Form
     {
         // Constant for rewriting system method
@@ -82,18 +84,22 @@ namespace Laba_4
             ReloadForm();
         }
 
-        // Event for selecting some row in list
+        /// <summary>
+        /// Событие для выбора некоторой строки в списке
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangeSelect(object sender, EventArgs e)
         {
-            // If row is exists
+            // Если строка существует
             if (usbList.CurrentRow != null)
             {
-                // If there are no index of bounds
+                // Если нет индекса границ
                 if (usbList.CurrentRow.Index >= 0 && usbList.CurrentRow.Index < _deviceList.Count)
                 {
-                    // We can eject only USB, not MTP
+                    // Мы можем извлечь только USB, а не MTP
                     removeButton.Enabled = !_deviceList[usbList.CurrentRow.Index].IsMtpDevice;
-                    // The same with output
+                   
                     if (!_deviceList[usbList.CurrentRow.Index].IsMtpDevice)
                     {
                        
@@ -105,24 +111,28 @@ namespace Laba_4
                 }
                 else
                 {
-                    // In other situations just block everything
+                    // В других ситуациях просто блокируем
                     removeButton.Enabled = false;
                  
                 }
             }
         }
 
-        // Event for clicking deleting button
+        /// <summary>
+        ///  Событие для нажатия кнопки удаления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnclickButton(object sender, EventArgs e)
         {
-            // If we choose what device we want to eject
+            // Если мы выберем, устройство которое мы хотим извлечь
             if (usbList.CurrentRow != null)
             {
-                // Then we should invoke a method Eject_Device()
+                //Затем мы должны вызвать метод Eject_Device ()
                 bool isEjected = _deviceList[usbList.CurrentRow.Index].EjectDevice();
                 if (isEjected == false)
                 {
-                    label1.Text = "Устройство занято.";
+                    MessageBox.Show("Устройство занято.");
                 }
                 else
                 {
