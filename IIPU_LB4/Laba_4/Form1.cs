@@ -28,10 +28,10 @@ namespace Laba_4
         {
             // Redirect messages to our program
             base.WndProc(ref m);
-            // If config of our devices has changed
+            // Если конфигурация наших устройств изменилась
             if (m.Msg == WM_DEVICECHANGE)
             {
-                // Reload our data
+                // перезагрузка формы
                 ReloadForm();
             }
         }
